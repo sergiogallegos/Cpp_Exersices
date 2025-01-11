@@ -1,6 +1,13 @@
 #include <iostream>
+#include <string>
+
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+
 
 int main() {
-    std::cout << "Hello, Cross-Platform C++!" << std::endl;
+    cout << "Hello, Cross-Platform C++!" << endl;
     return 0;
 }
