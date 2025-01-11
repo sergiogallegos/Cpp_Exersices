@@ -1,10 +1,7 @@
 #include <iostream>
 #include <string>
 
-using std::cout;
-using std::cin;
-using std::endl;
-using std::string;
+using namespace std;
 
 
 int main() {
