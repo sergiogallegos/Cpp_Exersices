@@ -1,5 +1,7 @@
 # Cpp_Exercises
 
+![C++ Logo](https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg)
+
 ## Overview
 This repository contains a collection of **C++ exercises and projects** that I am working on to practice and improve my **C++ programming skills**. It includes examples of foundational concepts, algorithms, and small projects for hands-on learning. This repository documents my progress and serves as a public record of my journey with C++.
 
