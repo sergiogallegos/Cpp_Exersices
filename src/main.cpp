@@ -21,9 +21,39 @@ void printVector(const std::vector<int>& vector) {
     std::cout << std::endl;
 }
 
+// Test Exceptions
+class Bad_area {};
+
+int area(int length, int width) {
+  if (length <= 0 || width <= 0)
+	throw Bad_area{};
+  return length * width;
+}
+
+constexpr int frame_width = 2;
+
+int framed_area(int x, int y) {
+  return area(x-frame_width, y-frame_width);
+}
+
+void test(int x, int y, int z) {
+  int area1 = area(x, y);
+  //int area2 = framed_area(1, z);
+  int area3 = framed_area(y, z);
+  double ratio = area1 / area3;
+}
+
 int main() {
     std::cout << "Hello, C++!" << std::endl;
-    
+	
+	// Test Exceptions
+	try {
+	  test(-1, 2, 4);
+	}
+	catch(Bad_area) {
+	  std::cout << "Oops! bad arguments to area()\n"; 
+	}
+
     // Test add_two
     int sumResult = addTwo(1, 2);
     std::cout << "Sum: " << sumResult << std::endl;
@@ -39,8 +69,10 @@ int main() {
 
     // Compute mean and median temperatures
     std::vector<double> temps; // temperatures
-    for (double temp; std::cin >> temp;) // read into temp
+	std::vector<double>::size_type max_values = 5; // Match std::vector::size_type
+    for (double temp; temps.size() < max_values && std::cin >> temp;) { // read into temp
         temps.push_back(temp); // pump temp into vector
+	}
     
     // compute mean temperature:
     double sum = 0;
