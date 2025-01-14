@@ -1,46 +1,20 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++20 -Iinclude
+CXXFLAGS = -Wall -Wextra -std=c++20 -Iinclude -g
 
-# Build mode (debug or release)
-BUILD_MODE = debug
+# Directories
+SRC_DIR = src
+BUILD_DIR = build/debug
 
-# Debug and Release-specific flags
-DEBUG_FLAGS = -g
-RELEASE_FLAGS = -O2
+# Default target
+all:
+	@echo "Specify a target program with: make PROGRAM=<program_name> compile"
 
-# Build directory based on the build mode
-BUILD_DIR = build/$(BUILD_MODE)
+# Compile the specified program
+compile:
+	@if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) $(SRC_DIR)/$(PROGRAM).cpp -o $(BUILD_DIR)/$(PROGRAM).exe
 
-# Target executable
-TARGET = $(BUILD_DIR)/main.exe
-
-# Source files and object files
-SRCS = $(wildcard src/*.cpp)
-OBJS = $(SRCS:src/%.cpp=$(BUILD_DIR)/%.o)
-
-# Determine flags based on build mode
-ifeq ($(BUILD_MODE), debug)
-    CXXFLAGS += $(DEBUG_FLAGS)
-else ifeq ($(BUILD_MODE), release)
-    CXXFLAGS += $(RELEASE_FLAGS)
-endif
-
-# Default rule to build the project
-all: $(TARGET)
-
-# Rule to link the final executable
-$(TARGET): $(OBJS) | $(BUILD_DIR)
-	$(CXX) $(CXXFLAGS) -o $@ $^
-
-# Rule to compile source files into object files
-$(BUILD_DIR)/%.o: src/%.cpp | $(BUILD_DIR)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-# Create the build directory if it doesn't exist
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
-
-# Clean build artifacts
+# Clean build files
 clean:
-	rm -rf build
+	@if exist $(BUILD_DIR) rmdir /s /q $(BUILD_DIR)
