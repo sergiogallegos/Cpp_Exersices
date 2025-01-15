@@ -12,9 +12,9 @@ all:
 
 # Compile the specified program
 compile:
-	@if not exist $(BUILD_DIR) mkdir $(BUILD_DIR)
+	@if not exist "$(BUILD_DIR)" mkdir "$(BUILD_DIR)"
 	$(CXX) $(CXXFLAGS) $(SRC_DIR)/$(PROGRAM).cpp -o $(BUILD_DIR)/$(PROGRAM).exe
 
 # Clean build files
 clean:
-	@if exist $(BUILD_DIR) rmdir /s /q $(BUILD_DIR)
+	@if exist "$(BUILD_DIR)" rmdir /s /q "$(BUILD_DIR)"
